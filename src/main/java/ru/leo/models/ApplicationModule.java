@@ -29,7 +29,7 @@ public class ApplicationModule extends AbstractModule {
 
     @Provides
     @Singleton
-    Server modelServer(ModelServiceGrpcImpl modelServiceGrpc) {
+    private Server modelServer(ModelServiceGrpcImpl modelServiceGrpc) {
         return ServerBuilder
             .forPort(SERVER_PORT)
             .addService(ProtoReflectionService.newInstance())
@@ -39,7 +39,7 @@ public class ApplicationModule extends AbstractModule {
 
     @Provides
     @Singleton
-    private static MinioClient minioClient() {
+    private MinioClient minioClient() {
         return MinioClient.builder()
             .endpoint(MINIO_ENDPOINT)
             .credentials(MINIO_ACCESS_KEY, MINIO_SECRET_KEY)

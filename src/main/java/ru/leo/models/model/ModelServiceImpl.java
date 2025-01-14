@@ -2,12 +2,12 @@ package ru.leo.models.model;
 
 import com.google.inject.Inject;
 import java.util.Collection;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class ModelServiceImpl implements ModelService {
-    private final Map<String, Model> models = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, Model> models = new ConcurrentHashMap<>();
     private final ModelLoader loader;
 
     @Inject

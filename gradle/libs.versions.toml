@@ -6,6 +6,7 @@ protobuf = "4.29.2"
 
 [plugins]
 protobuf = "com.google.protobuf:0.9.4"
+shad = "com.github.johnrengelman.shadow:7.1.2"
 
 [libraries]
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
