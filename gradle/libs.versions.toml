@@ -1,0 +1,41 @@
+[versions]
+junit = "5.10.0"
+assertj = "3.26.3"
+grpc = "1.69.0"
+protobuf = "4.29.2"
+
+[plugins]
+protobuf = "com.google.protobuf:0.9.4"
+shad = "com.github.johnrengelman.shadow:7.1.2"
+
+[libraries]
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+assertj-bom = { module = "org.assertj:assertj-bom", version.ref = "assertj" }
+grpc-bom = { module = "io.grpc:grpc-bom", version.ref = "grpc" }
+protobuf-bom = { module = "com.google.protobuf:protobuf-bom", version.ref = "protobuf" }
+slf4j-bom = "org.slf4j:slf4j-bom:2.0.16"
+log4j-bom = "org.apache.logging.log4j:log4j-bom:2.24.1"
+mockito-bom = "org.mockito:mockito-bom:5.14.2"
+
+junit-jupiter.module = "org.junit.jupiter:junit-jupiter"
+assertj-core.module = "org.assertj:assertj-core"
+
+grpc-netty.module = "io.grpc:grpc-netty"
+grpc-protobuf.module = "io.grpc:grpc-protobuf"
+grpc-stub.module = "io.grpc:grpc-stub"
+grpc-services.module = "io.grpc:grpc-services"
+
+log4j-core.module = "org.apache.logging.log4j:log4j-core"
+log4j-slf4j2Impl.module = "org.apache.logging.log4j:log4j-slf4j2-impl"
+
+javax-annotationApi = "javax.annotation:javax.annotation-api:1.3.2"
+catboost = "ai.catboost:catboost-prediction:1.2"
+minio = 'io.minio:minio:8.5.14'
+guice = 'com.google.inject:guice:7.0.0'
+
+mockito-core.module = "org.mockito:mockito-core"
+mockito-junit-jupiter.module = "org.mockito:mockito-junit-jupiter"
+
+# Plugin dependencies
+protobuf-protoc = { module = "com.google.protobuf:protoc", version.ref = "protobuf" }
+grpc-protocGen = { module = "io.grpc:protoc-gen-grpc-java", version.ref = "grpc" }

@@ -1,0 +1,82 @@
+plugins {
+    id 'application'
+
+    alias libs.plugins.shad
+    alias libs.plugins.protobuf
+}
+
+group = 'ru.leo.models'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(
+        enforcedPlatform(libs.protobuf.bom),
+        enforcedPlatform(libs.log4j.bom),
+        enforcedPlatform(libs.grpc.bom),
+        libs.grpc.netty,
+        libs.grpc.protobuf,
+        libs.grpc.stub,
+        libs.grpc.services,
+        libs.log4j.core,
+        libs.log4j.slf4j2Impl,
+        libs.catboost,
+        libs.minio,
+        libs.guice
+    )
+
+    compileOnly(
+        libs.javax.annotationApi
+    )
+
+    testImplementation(
+        platform(libs.junit.bom),
+        platform(libs.assertj.bom),
+        platform(libs.mockito.bom),
+        libs.junit.jupiter,
+        libs.assertj.core,
+        libs.mockito.core,
+        libs.mockito.junit.jupiter
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+        proto {
+            srcDir('api')
+            include('*.proto')
+        }
+    }
+}
+
+protobuf {
+    var osxSuffix = osdetector.os == 'osx' ? ':osx-x86_64' : ''
+    protoc {
+        artifact = libs.protobuf.protoc.get().toString() + osxSuffix
+    }
+    plugins {
+        grpc.artifact = libs.grpc.protocGen.get().toString() + osxSuffix
+    }
+    generateProtoTasks { all().each { it.plugins { grpc {} } } }
+}
+
+application.mainClass = 'ru.leo.models.Application'
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'ru.leo.models.Application'
+        )
+    }
+}
